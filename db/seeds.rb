@@ -11,3 +11,4 @@ contact_attributes = [
 contact_attributes.each do |attributes|
   Contact.create(attributes)
 end
+
