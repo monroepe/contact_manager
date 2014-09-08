@@ -5,3 +5,12 @@
     <li><a href="/contacts/<%= contact.id %>"><%= contact.name %></a> - <%= contact.phone_number %></li>
   <% end %>
 </ul>
+
+<div>
+  <% if !on_first_page?(@page_num) %>
+    <a href="/?page=<%= @page_num - 1 %>">Previous</a>
+  <% end %>
+  <% if on_last_page?(@page_num) %>
+    <a href="/?page=<%= @page_num + 1 %>">Next</a>
+  <% end %>
+</div>

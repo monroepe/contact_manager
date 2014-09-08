@@ -1,11 +1,28 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require "sinatra/activerecord"
+require 'pry'
 
 require_relative 'models/contact'
 
+helpers do
+  def on_last_page?(page_num)
+    page_num < (Contact.all.length.to_f / 5).ceil
+  end
+
+  def on_first_page?(page_num)
+    page_num == 1
+  end
+end
+
 get '/' do
-  @contacts = Contact.all
+  if params[:page]
+    @page_num = params[:page].to_i
+  else
+    @page_num = 1
+  end
+
+  @contacts = Contact.limit(5).offset((@page_num - 1) * 5)
   erb :index
 end
 
