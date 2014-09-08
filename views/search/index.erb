@@ -1,5 +1,10 @@
 <h1>Contact Info</h1>
 
 
-<p><%= @contact[0].name %> - <%= @contact[0].phone_number %></p>
+<ul>
+  <% @contacts.each do |contact| %>
+    <li><a href="/contacts/<%= contact.id %>"><%= contact.name %></a> - <%= contact.phone_number %></li>
+  <% end %>
+</ul>
+
 

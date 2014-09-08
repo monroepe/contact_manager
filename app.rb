@@ -32,9 +32,12 @@ get '/contacts/:id' do
 end
 
 get '/search' do
-  @contact = Contact.where("last_name = ?", params[:search])
+  search = "%#{params[:search].gsub(' ','')}%"
+  @contacts = Contact.where("CONCAT(first_name, last_name) ilike :search ", { search: search })
   erb :'search/index'
 end
+
+
 
 
 
