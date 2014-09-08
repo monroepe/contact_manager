@@ -22,11 +22,19 @@ get '/' do
     @page_num = 1
   end
 
-  @contacts = Contact.limit(5).offset((@page_num - 1) * 5)
-  erb :index
+  @contacts = Contact.limit(3).offset((@page_num - 1) * 3)
+  erb :'contacts/index'
 end
 
 get '/contacts/:id' do
-  @contact = Contact.find(params[:id])
-  erb :show
+    @contact = Contact.find(params[:id])
+  erb :'contacts/show'
 end
+
+get '/search' do
+  @contact = Contact.where("last_name = ?", params[:search])
+  erb :'search/index'
+end
+
+
+

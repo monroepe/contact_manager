@@ -8,5 +8,12 @@
   </head>
   <body>
     <%= yield %>
+
+    <br><br>
+    <form name = "search" action = "/search?search=<% params[:search]%>" method = "get">Search:
+    <input type="text" placeholder="Search..." name="search">
+    </form>
+    <br>
+    <a href= "/">All Contacts</a>
   </body>
 </html>
